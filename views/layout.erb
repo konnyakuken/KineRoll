@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>むびコレ</title>
+	<link rel="stylesheet" href="/assets/css/index.css">
+	
+<body>
+<nav class="center-hrizontal">
+	<a href="/">むびコレ（仮）</a>
+	
+	<% if !current_user.nil? %><%# ログインしているとき%>
+		<h1><%=current_user.name%>さん</h1>
+		<% if current_user.icon=="" %>
+			<a ><img src="/assets/img/eigakan.png" alt="user_image" width="40" height="40"></a>
+		<% else %>
+			<a><img src="<%=current_user.icon%>" alt="user_image" width="40" height="40"></a>
+		<% end %>
+		<a href="/search">search</a></li>
+		<a href="/signout">ログアウト</a>
+	<% else %>
+		<a href="/signup">新規登録</a>
+	<% end %>
+</nav>
+<main>
+
+<%= yield %>
+
+</main>
+</body>
+</html>

@@ -7,6 +7,7 @@ class User<ActiveRecord::Base
     has_many :interests
     has_many :schedules
     has_many :histories
+    has_secure_password
 end
 
 class Interests<ActiveRecord::Base

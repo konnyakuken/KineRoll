@@ -4,7 +4,25 @@
 	<meta charset="UTF-8">
 	<title>タイトル</title>
 </head>
+<section >
+	<h1></h1>
+	<%# ログイン中は見えないようにする%>
+	<div>
+		<% if current_user.nil? %>
+		    <form class="col-lg-5" action="/signin" method="post">
+		        <div class="controls">
+		            <div class="form-group">
+		                <input class="form-control input-lg" name="name" placeholder="ユーザー名">
+		                <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
+		                <input class="form-control " type="submit" value="ログイン">
+		            </div>
+		                
+		        </div>
+		    </form>
+	    <% end %>
+	</div>
+</section>
 <body>
-	<h1>title</h1>
+	<h1>test</h1>
 </body>
 </html>
