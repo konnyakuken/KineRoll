@@ -1,0 +1,36 @@
+<section class="center-vertical">
+	<h1>作品検索</h1>
+	<form action="/search" method="post">
+		<input type="text" name="keyword" placeholder="キーワード">
+		<input type="submit" value="検索">
+	</form>
+	<% if @url=="https://api.themoviedb.org/3/movie/popular?api_key=a8ba2cc864f08aa8915a569d0640347f&language=ja-JA&page=1" %>
+		<h2>人気映画</h2>
+		    <div class="center-hrizontal">
+				<% @movies.each do |movie| %>
+					<div class="post center-vertical">
+						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+						<p><%= movie["release_date"]%></p>
+						<p><%= movie["title"]%></p>
+						<p><%= movie["overview"]%></p>
+						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+					</div>
+				<% end %>
+			</div>
+	<% elsif !@movies.empty?%>
+	    <h2>検索結果</h2>
+			<div class="center-hrizontal">
+				<% @movies.each do |movie| %>
+					<div class="post center-vertical">
+						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+						<p><%= movie["release_date"]%></p>
+						<p><%= movie["title"]%></p>
+						<p><%= movie["overview"]%></p>
+						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+					</div>
+				<% end %>
+			</div>
+	<% else %>
+		<p>検索結果がありません</p>
+	<% end %>
+</section>

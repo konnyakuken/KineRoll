@@ -5,12 +5,11 @@ require './models.rb'
 
 require "sinatra/activerecord"#activerecordを使えるように
 
-require "open-uri"
+require 'open-uri'
 require "json"
 require "net/http"
 
 enable :sessions
-
 
 
 helpers do#erbファイル上で利用できるメソッド
@@ -31,6 +30,7 @@ end
 
 get "/"do
     session[:name_dup]=nil
+    
     erb :index
 end
 
@@ -80,4 +80,36 @@ end
 get "/signout" do#ログアウト
    session[:user]=nil
    redirect"/"
+end
+
+get "/search"do
+    #人気作品一覧取得
+    pop_url="https://api.themoviedb.org/3/movie/popular?api_key=a8ba2cc864f08aa8915a569d0640347f&language=ja-JA&page=1"
+
+    uri=URI(pop_url)
+    res=Net::HTTP.get_response(uri)
+    returned_JSON=JSON.parse(res.body)
+    
+    @movies=returned_JSON["results"]
+    @url=pop_url
+    erb :search 
+end
+
+post "/search" do
+    
+    Tmdb::Api.key("a8ba2cc864f08aa8915a569d0640347f")
+    Tmdb::Api.language("ja")
+    
+    base_url="https://api.themoviedb.org/3/search/movie?api_key=a8ba2cc864f08aa8915a569d0640347f&language=ja-JA&query="
+    keyword=URI.encode_www_form_component(params[:keyword])
+
+    uri=URI(base_url + keyword)
+    #uri=URI.encode_www_form_component(uri, enc=nil)
+    res=Net::HTTP.get_response(uri)
+    returned_JSON=JSON.parse(res.body)
+    
+    @movies=returned_JSON["results"]
+    @url=base_url
+
+    erb :search 
 end

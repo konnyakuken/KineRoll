@@ -12,6 +12,8 @@ gem 'sinatra-activerecord', '~> 2.0'
 gem 'sinatra-contrib', '~> 2.1'
 gem 'webrick', '~> 1.7'
 
+gem 'themoviedb-api', '~> 1.3'
+
 group :development do
   gem 'debase'
   gem 'fastri'
@@ -21,3 +23,4 @@ group :development do
   gem 'rubocop-performance'
   gem 'ruby-debug-ide'
 end
+
