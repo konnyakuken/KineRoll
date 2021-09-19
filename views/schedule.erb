@@ -1,0 +1,19 @@
+<body>
+    <h2><%=@date.year%>年<%=@date.month%>月<%=@date.day%>日 (<%=@week%>)</h2>
+    <div class="center-hrizontal">
+		<% @movies.each do |task| %>
+			    <% movie=Movie.find_by(id: task.movie_id) %>
+				<div class="post center-vertical">
+            		<img src="<%= movie.jacket%>">
+            		<p><%= movie.title%></p>
+            		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
+            		<p><%=task.cinema%></p>
+            		<p>日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
+            		<p>メモ: <%=task.note%></p>
+            		<a href="/task/delete/<%=task.id%>">削除</a>
+            		<a href="/task/edit/<%=task.id%>">編集</a>
+            		
+            	</div>
+		<% end %>
+	</div>
+</body>

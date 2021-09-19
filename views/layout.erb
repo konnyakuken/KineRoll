@@ -10,18 +10,14 @@
 	<a href="/">むびコレ（仮）</a>
 	
 	<% if !current_user.nil? %><%# ログインしているとき%>
-		<h1><%=current_user.name%>さん</h1>
-		<% if current_user.icon=="" %>
-			<a ><img src="/assets/img/eigakan.png" alt="user_image" width="40" height="40"></a>
-		<% else %>
-			<a><img src="<%=current_user.icon%>" alt="user_image" width="40" height="40"></a>
-		<% end %>
-		<a href="/search">search</a></li>
-		<a href="/signout">ログアウト</a>
+		<div>
+			<a href="/search">映画検索</a>
+			<a href="/signout">ログアウト</a>
+		</div>
 	<% else %>
 		<a href="/signup">新規登録</a>
 	<% end %>
-	<a href="/search">検索</a>
+	
 </nav>
 <main>
 

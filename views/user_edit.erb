@@ -1,0 +1,30 @@
+<section>
+    <h2>ユーザー情報の編集</h2>
+	<h1><%=current_user.name%></h1>
+		<div>
+		    <h2>アイコン画像</h2>
+			<% if current_user.icon=="" %>
+				<a><img src="/assets/img/eigakan.png" alt="user_image" width="40" height="40"></a>
+			<% else %>
+				<a><img src="<%=current_user.icon%>" alt="user_image" width="40" height="40"></a>
+			<% end %>
+			<form action="/home/edit/<%=current_user.id%>" method="post">
+                <!--<input  name="file" type="file"><br><br>-->
+			    <label for="name">新しいユーザー名</label><br>
+				<input type="text" id="name" name="name" value="<%=current_user.name%>" required><br><br>
+				<label for="password">新しいパスワード</label><br>
+			    <input  name="password" id="password" type="password" placeholder="パスワード" required><br><br>
+			    <label for="password_confirmation">新しいパスワードの再入力</label><br>
+                <input  name="password_confirmation" id="password_confirmation" type="password" placeholder="パスワードをもう一度入力" required><br>
+                
+                <input type="submit" value="更新">
+			</form>
+		</div>
+</section>
+<body>
+	
+		    <div class="center-hrizontal">
+				
+			</div>
+</body>
+</html>

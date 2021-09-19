@@ -9,25 +9,35 @@
 		    <div class="center-hrizontal">
 				<% @movies.each do |movie| %>
 					<div class="post center-vertical">
-						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
-						<p><%= movie["release_date"]%></p>
-						<p><%= movie["title"]%></p>
-						<p><%= movie["overview"]%></p>
-						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
-					</div>
+							<form class="col-lg-5" action="/new" method="post">
+								<input type="hidden" name="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+								<input type="hidden" name="release" value=<%= movie["release_date"]%>>
+								<input type="hidden" name="title" value=<%= movie["title"]%>>
+							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="送信する">
+		    				</form>
+							<p><%= movie["release_date"]%></p>
+							<p><%= movie["title"]%></p>
+							<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+						</div>
 				<% end %>
 			</div>
 	<% elsif !@movies.empty?%>
 	    <h2>検索結果</h2>
 			<div class="center-hrizontal">
 				<% @movies.each do |movie| %>
-					<div class="post center-vertical">
-						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
-						<p><%= movie["release_date"]%></p>
-						<p><%= movie["title"]%></p>
-						<p><%= movie["overview"]%></p>
-						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
-					</div>
+					
+						<div class="post center-vertical">
+							<form class="col-lg-5" action="/new" method="post">
+								<input type="hidden" name="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+								<input type="hidden" name="release" value=<%= movie["release_date"]%>>
+								<input type="hidden" name="title" value=<%= movie["title"]%>>
+							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="送信する">
+		    				</form>
+							<p><%= movie["release_date"]%></p>
+							<p><%= movie["title"]%></p>
+							<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+						</div>
+					
 				<% end %>
 			</div>
 	<% else %>

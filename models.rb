@@ -10,12 +10,12 @@ class User<ActiveRecord::Base
     has_secure_password
 end
 
-class Interests<ActiveRecord::Base
+class Interest<ActiveRecord::Base
     belongs_to :movie
     belongs_to :user
 end
 
-class Schedules<ActiveRecord::Base
+class Schedule<ActiveRecord::Base
     belongs_to :movie
     belongs_to :user
 end
@@ -26,7 +26,14 @@ class History<ActiveRecord::Base
    has_many :reviews
 end
 
-class Reviews<ActiveRecord::Base
+class Review<ActiveRecord::Base
    belongs_to :history
    belongs_to :movie
+end
+
+class Movie<ActiveRecord::Base
+    has_many :interests
+    has_many :schedules
+    has_many :histories
+    has_many :reviews
 end

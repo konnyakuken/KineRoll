@@ -1,0 +1,40 @@
+<section>
+	<h1><%=current_user.name%>さん</h1>
+		<div>
+			<% if current_user.icon=="" %>
+				<a><img src="/assets/img/eigakan.png" alt="user_image" width="40" height="40"></a>
+			<% else %>
+				<a><img src="<%=current_user.icon%>" alt="user_image" width="40" height="40"></a>
+			<% end %>
+			<form action="/home/edit/<%=current_user.id%>" method="get">
+			    <input type="submit" value="ユーザー情報の編集">
+			</form><br>
+			
+			<form action="/task" method="get">
+			    <input type="submit" value="スケジュール一覧表示">
+			</form><br>
+			
+			<form action="/favorite" method="get">
+			    <input type="submit" value="お気に入りした作品">
+			</form><br>
+			
+			<form action="/finish" method="get">
+			    <input type="submit" value="観た作品">
+			</form><br>
+		</div>
+</section>
+<body>
+	<h2>人気映画</h2>
+		    <div class="center-hrizontal">
+				<% @movies.each do |movie| %>
+					<div class="post center-vertical">
+						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+						<p><%= movie["release_date"]%></p>
+						<p><%= movie["title"]%></p>
+					
+						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+					</div>
+				<% end %>
+			</div>
+</body>
+</html>
