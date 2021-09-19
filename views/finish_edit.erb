@@ -1,0 +1,40 @@
+<body>
+    <div class="post center-vertical">
+		<img src="<%= @movie.jacket%>">
+		<p><%= @movie.title%></p>
+		<p>公開日 <%= Date.parse(@movie.release.to_s)%></p>
+		
+		<form action="/finish/edit/<%=@review.id%>" method="post" id="finish_movie">
+		    <input  type="hidden" name="movie_id" value=<%=@movie.id%>>
+    		<div class="form-group">
+    			<label for="date">観た日時</label><br>
+    			<input type="datetime-local" id="date" name="date" value="<%=@review.date.strftime("%Y-%m-%dT%H:%M")%>" required>
+    		</div>
+    		<div class="form-group">
+    			<label for="cinema">観た劇場</label><br>
+    			<input type="text" id="cinema" name="cinema" value="<%=@review.cinema%>" required>
+    		</div>
+    		<div class="form-group">
+    			<label for="comment">コメント</label><br>
+    			<textarea type="textarea"  rows="5" cols="25"id="comment" name="comment" ><%=@review.comment%></textarea>
+    		</div>
+    		<p>レビュー</p><span hidden id="star_num"><%=@review.star%></span>
+                <div class="stars">
+                    <span>
+                      <input id="review01" type="radio" name="review" value="1"><label for="review01">★</label>
+                      <input id="review02" type="radio" name="review" value="2"><label for="review02">★</label>
+                      <input id="review03" type="radio" name="review" value="3"><label for="review03">★</label>
+                      <input id="review04" type="radio" name="review" value="4"><label for="review04">★</label>
+                      <input id="review05" type="radio" name="review" value="5"><label for="review05">★</label>
+                    </span>
+                </div><%#初期値の表示%>
+                <script>
+                    var element = document.getElementById( "finish_movie" ) ;
+                    var elements = element.review ;
+                    var star = document.getElementById('star_num').textContent;
+                    elements[Number(star)-1].checked = true ;
+                </script>
+    		<input type="submit" value="更新">
+		</form>
+	</div>
+</body>

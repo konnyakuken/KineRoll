@@ -26,3 +26,56 @@
     word-break: break-all;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
   }
+
+
+.stars span{
+  display: flex;               /* 要素をフレックスボックスにする */
+  flex-direction: row-reverse; /* 星を逆順に並べる */
+  justify-content: flex-end;   /* 逆順なので、左寄せにする */
+}
+
+.stars input[type='radio']{
+  display: none;               /* デフォルトのラジオボタンを非表示にする */
+}
+
+.stars label{
+  color: #D2D2D2;              /* 未選択の星をグレー色に指定 */
+  font-size: 30px;             /* 星の大きさを30pxに指定 */
+  padding: 0 5px;              /* 左右の余白を5pxに指定 */
+  cursor: pointer;             /* カーソルが上に乗ったときに指の形にする */
+}
+
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input[type='radio']:checked ~ label{
+  color: #F8C601;              /* 選択された星以降をすべて黄色にする */
+}
+
+
+.star5_rating{
+	position: relative;
+	z-index: 0;
+	display: inline-block;
+	white-space: nowrap;
+	color: #CCCCCC;
+}
+
+.star5_rating:before, .star5_rating:after{
+    content: '★★★★★';
+}
+
+.star5_rating:after{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffcf32;
+}
+
+.star5_rating[data-rate="5"]:after{ width: 20%; }
+.star5_rating[data-rate="4"]:after{ width: 40%; }
+.star5_rating[data-rate="3"]:after{ width: 60%; }
+.star5_rating[data-rate="2"]:after{ width: 80%; }
+.star5_rating[data-rate="1"]:after{ width: 100%; }

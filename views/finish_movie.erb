@@ -1,0 +1,34 @@
+<body>
+    <div class="post center-vertical">
+		<img src="<%= @movie.jacket%>">
+		<p><%= @movie.title%></p>
+		<p>公開日 <%= Date.parse(@movie.release.to_s)%></p>
+		
+		<form action="/new/post/history" method="post">
+		    <input  type="hidden" name="movie_id" value=<%=@movie.id%>>
+    		<div class="form-group">
+    			<label for="date">観た日時</label><br>
+    			<input type="datetime-local" id="date" name="date"  required>
+    		</div>
+    		<div class="form-group">
+    			<label for="cinema">観た劇場</label><br>
+    			<input type="text" id="cinema" name="cinema"  required>
+    		</div>
+    		<div class="form-group">
+    			<label for="comment">コメント</label><br>
+    			<textarea type="textarea"  rows="5" cols="25"id="comment" name="comment"></textarea>
+    		</div>
+    		<p>レビュー</p>
+                <div class="stars">
+                    <span>
+                      <input id="review01" type="radio" name="review" value="1"><label for="review01">★</label>
+                      <input id="review02" type="radio" name="review" value="2"><label for="review02">★</label>
+                      <input id="review03" type="radio" name="review" value="3"><label for="review03">★</label>
+                      <input id="review04" type="radio" name="review" value="4"><label for="review04">★</label>
+                      <input id="review05" type="radio" name="review" value="5"><label for="review05">★</label>
+                    </span>
+                </div>
+    		<input type="submit" value="保存">
+		</form>
+	</div>
+</body>

@@ -11,6 +11,10 @@ require "net/http"
 
 require 'date'
 
+require 'sinatra'
+require 'sinatra/reloader'
+require 'json'
+
 enable :sessions
 
 
@@ -171,6 +175,15 @@ post "/new" do
         @movie=Movie.find_by(title: params[:title])
     end
     session[:movie]=@movie.id
+    
+    if History.find_by(user_id: session[:user],movie_id: @movie.id)==nil
+        History.create(
+            user_id: session[:user],
+            movie_id: @movie.id
+            )
+    end
+    
+    
    erb:select 
 end
 
@@ -215,4 +228,55 @@ post"/task/edit/:id"do
     task.note=params[:note]
     task.save
     redirect"/task"
+end
+
+get "/new/post/history"do
+    @movie=Movie.find_by(id: session[:movie])
+    erb:finish_movie
+end
+
+post "/new/post/history"do
+    history=History.find_by(movie_id: Movie.find_by(id: session[:movie]))
+    finish=Review.create(
+        user_id: session[:user],
+        cinema: params[:cinema],
+        date: params[:date],
+        comment: params[:comment],
+        star: params[:review],
+        history_id: history.id
+    )
+    redirect"/finish"
+end
+
+get "/finish"do
+   @movies=Review.where(user_id: session[:user])
+   erb:finish
+end
+
+get"/finish/delete/:id"do
+    review=Review.find(params[:id])
+    review.destroy
+    redirect "/finish"
+end
+
+get"/finish/edit/:id"do
+    @review=Review.find(params[:id])
+    @movie=Movie.find(History.find(@review.history_id).movie_id)
+    erb:finish_edit
+end
+
+post"/finish/edit/:id"do
+    finish=Review.find(params[:id])
+    finish.cinema=params[:cinema]
+    finish.date=params[:date]
+    finish.comment=params[:comment]
+    finish.star=params[:review]
+    finish.save
+    redirect"/finish"
+end
+
+
+get "/favorite"do
+   @movies=Review.where(user_id: session[:user])
+   erb:favorite
 end
