@@ -12,8 +12,8 @@
 					<div class="post center-vertical">
 							<form class="col-lg-5" action="/new" method="post">
 								<input type="hidden" name="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
-								<input type="hidden" name="release" value=<%= movie["release_date"]%>>
-								<input type="hidden" name="title" value=<%= movie["title"]%>>
+								<input type="hidden" name="release" value="<%= movie["release_date"]%>">
+								<input type="hidden" name="title" value="<%= movie["title"]%>">
 							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="送信する">
 		    				</form>
 							<p><%= movie["release_date"]%></p>
@@ -30,8 +30,8 @@
 						<div class="post center-vertical">
 							<form class="col-lg-5" action="/new" method="post">
 								<input type="hidden" name="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
-								<input type="hidden" name="release" value=<%= movie["release_date"]%>>
-								<input type="hidden" name="title" value=<%= movie["title"]%>>
+								<input type="hidden" name="release" value="<%= movie["release_date"]%>">
+								<input type="hidden" name="title" value="<%= movie["title"]%>">
 							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="送信する">
 		    				</form>
 							<p><%= movie["release_date"]%></p>

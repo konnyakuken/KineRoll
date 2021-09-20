@@ -4,7 +4,7 @@
 		<p><%= @movie.title%></p>
 		<p>公開日 <%= Date.parse(@movie.release.to_s)%></p>
 		
-		<form action="/finish/edit/<%=@review.id%>" method="post" id="finish_movie">
+		<form action="/finish/edit/<%=@review.id%>/<%=@type%>" method="post" id="finish_movie">
 		    <input  type="hidden" name="movie_id" value=<%=@movie.id%>>
     		<div class="form-group">
     			<label for="date">観た日時</label><br>

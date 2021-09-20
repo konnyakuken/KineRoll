@@ -10,11 +10,13 @@ require "json"
 require "net/http"
 
 require 'date'
+require 'time'
 
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 
+require 'set'
 enable :sessions
 
 
@@ -33,7 +35,8 @@ helpers do#erbファイル上で利用できるメソッド
     end
     
     def now_date
-        @date=Date.today
+        @date=Time.now
+        @date=@date.timezone('Asia/Tokyo') 
         weeks=["日","月","火","水","木","金","土"]
         @week=weeks[@date.wday]
     end
@@ -52,6 +55,17 @@ before do
        config.api_key = ENV["CLOUDINARY_API_KEY"]
        config.api_secret = ENV["CLOUDINARY_API_SECRET"]
     end
+end
+
+class Time 
+  def timezone(timezone = 'UTC')
+    old = ENV['TZ']
+    utc = self.dup.utc
+    ENV['TZ'] = timezone
+    output = utc.localtime
+    ENV['TZ'] = old
+    output
+  end
 end
 
 get "/"do
@@ -175,7 +189,7 @@ post "/new" do
         @movie=Movie.find_by(title: params[:title])
     end
     session[:movie]=@movie.id
-    
+    p params[:title]
     if History.find_by(user_id: session[:user],movie_id: @movie.id)==nil
         History.create(
             user_id: session[:user],
@@ -250,29 +264,56 @@ end
 
 get "/finish"do
    @movies=Review.where(user_id: session[:user])
+    set= Set.new
+    @movies.each do |movie|
+        set.add(movie.history_id)
+    end
+    @array=set.to_a
+    p @array
    erb:finish
 end
 
-get"/finish/delete/:id"do
-    review=Review.find(params[:id])
-    review.destroy
-    redirect "/finish"
+get"/finish/duplicate"do
+     @movies=Review.where(user_id: session[:user])
+   erb:finish_duplicate
 end
 
-get"/finish/edit/:id"do
+get"/finish/delete/:id/:type"do
+    review=Review.find(params[:id])
+    review.destroy
+    if params[:type]=="detail"
+        redirect "/finish"
+    else
+        redirect "/finish/duplicate"
+    end
+end
+
+get"/finish/edit/:id/:type"do
     @review=Review.find(params[:id])
     @movie=Movie.find(History.find(@review.history_id).movie_id)
+    @type=params[:type]
     erb:finish_edit
 end
 
-post"/finish/edit/:id"do
+post"/finish/edit/:id/:type"do
     finish=Review.find(params[:id])
     finish.cinema=params[:cinema]
     finish.date=params[:date]
     finish.comment=params[:comment]
     finish.star=params[:review]
     finish.save
-    redirect"/finish"
+    
+    if params[:type]=="detail"
+        redirect "/finish"
+    else
+        redirect "/finish/duplicate"
+    end
+end
+
+get"/finish/detail/:id"do
+    @reviews=Review.where(user_id: session[:user]).where(history_id: params[:id])
+    @movie=Movie.find(History.find(params[:id]).movie_id )
+    erb:finish_detail
 end
 
 

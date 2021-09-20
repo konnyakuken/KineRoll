@@ -5,26 +5,30 @@
            var nowHour = nowTime.getHours();
            var nowMin  = nowTime.getMinutes();
            var nowSec  = nowTime.getSeconds();
-           var msg = nowHour + ":" + nowMin + ":" + nowSec ;
+           var msg = nowHour + "時" + nowMin + "分" + nowSec +"秒";
            document.getElementById("RealtimeClockArea").innerHTML = msg;
         }
         setInterval('showClock1()',1000);
     </script>
-    <h2><%=@date.year%>年<%=@date.month%>月<%=@date.day%>日 (<%=@week%>) <a id="RealtimeClockArea">現在時刻</a></h2>
+    <h2><%=@date.year%>年<%=@date.month%>月<%=@date.day%>日(<%=@week%>) <a id="RealtimeClockArea">現在時刻</a></h2>
     <div class="center-hrizontal">
-		<% @movies.each do |task| %>
-			    <% movie=Movie.find_by(id: task.movie_id) %>
-				<div class="post center-vertical">
-            		<img src="<%= movie.jacket%>">
-            		<p><%= movie.title%></p>
-            		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
-            		<p><%=task.cinema%></p>
-            		<p>日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
-            		<p>メモ: <%=task.note%></p>
-            		<a href="/task/delete/<%=task.id%>">削除</a>
-            		<a href="/task/edit/<%=task.id%>">編集</a>
-            		
-            	</div>
-		<% end %>
+        <% if !@movies.empty? %>
+    		<% @movies.each do |task| %>
+    			    <% movie=Movie.find_by(id: task.movie_id) %>
+    				<div class="post center-vertical">
+                		<img src="<%= movie.jacket%>">
+                		<p><%= movie.title%></p>
+                		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
+                		<p><%=task.cinema%></p>
+                		<p>日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
+                		<p>メモ: <%=task.note%></p>
+                		<a href="/task/delete/<%=task.id%>">削除</a>
+                		<a href="/task/edit/<%=task.id%>">編集</a>
+                		
+                	</div>
+    		<% end %>
+    	<% else %>
+    	    <h2>観る予定リストに作品がありません</h2>
+    	<% end %>
 	</div>
 </body>
