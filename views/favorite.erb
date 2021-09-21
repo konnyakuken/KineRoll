@@ -1,1 +1,19 @@
-<h1>工事中</h1>
+<body>
+
+    <h2>お気に入り登録した作品</h2>
+    <div class="center-hrizontal">
+        <% if !@movies.empty? %>
+    		<% @movies.each do |favorite| %>
+    			    <% movie=Movie.find(favorite.movie_id) %>
+    				<div class="post center-vertical">
+                		<img src="<%= movie.jacket%>">
+                		<p><%= movie.title%></p>
+                		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
+                		
+                	</div>
+    		<% end %>
+    	<% else %>
+    	    <h2>お気に入り登録した作品がありません</h2>
+    	<% end %>
+	</div>
+</body>

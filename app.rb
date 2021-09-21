@@ -20,6 +20,7 @@ require 'set'
 enable :sessions
 
 
+
 helpers do#erbファイル上で利用できるメソッド
     def current_user
        User.find_by(id: session[:user]) #ログイン中のユーザー情報取得
@@ -165,7 +166,8 @@ post "/home/edit/:id" do
      user.password=params[:password]
      user.password_confirmation=params[:password_confirmation]
      img_url=""
-    if params[:file]
+    # p params[:file]
+    if params[:file]!=""
         img=params[:file]
         tempfile=img[:tempfile]
         upload=Cloudinary::Uploader.upload(tempfile.path)
@@ -178,7 +180,7 @@ end
 
 
 
-post "/new" do
+post "/new/:type" do
     if Movie.find_by(title: params[:title])==nil
        @movie=Movie.create(
            jacket: params[:jacket],
@@ -189,7 +191,7 @@ post "/new" do
         @movie=Movie.find_by(title: params[:title])
     end
     session[:movie]=@movie.id
-    p params[:title]
+
     if History.find_by(user_id: session[:user],movie_id: @movie.id)==nil
         History.create(
             user_id: session[:user],
@@ -197,8 +199,9 @@ post "/new" do
             )
     end
     
-    
-   erb:select 
+    if params[:type]=="post"
+        erb:select
+    end
 end
 
 get "/new/post/task"do
@@ -343,6 +346,22 @@ end
 
 
 get "/favorite"do
-   @movies=Review.where(user_id: session[:user])
+   @movies=Interest.where(user_id: session[:user])
    erb:favorite
+end
+
+get "/favorite/post"do
+    favorite=Interest.find_by(user_id: session[:user],movie_id: session[:movie])
+    if Interest.find_by(user_id: session[:user],movie_id: session[:movie])==nil
+        Interest.create(
+            user_id: session[:user],
+            movie_id: session[:movie]
+            )
+        content_type :json
+        @num={num: 1}.to_json
+    else
+        favorite.destroy
+        content_type :json
+        @num={num: 0}.to_json
+    end
 end

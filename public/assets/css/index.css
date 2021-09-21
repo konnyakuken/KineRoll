@@ -79,3 +79,21 @@
 .star5_rating[data-rate="3"]:after{ width: 60%; }
 .star5_rating[data-rate="2"]:after{ width: 80%; }
 .star5_rating[data-rate="1"]:after{ width: 100%; }
+
+
+/*お気に入りボタン*/
+.far.fa-star.fa-2x {
+ width: 25px;
+ height: 30px;
+ font-size: 25px;
+ color: #808080; 
+ margin-left: 20px;
+ }
+
+.fas.fa-star.fa-2x {
+ width: 25px;
+ height: 30px;
+ font-size: 25px;
+ color: #ffff66;
+ margin-left: 20px;
+ }

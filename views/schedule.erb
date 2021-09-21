@@ -1,14 +1,6 @@
 <body>
-    <script>
-        function showClock1() {
-           var nowTime = new Date();
-           var nowHour = nowTime.getHours();
-           var nowMin  = nowTime.getMinutes();
-           var nowSec  = nowTime.getSeconds();
-           var msg = nowHour + "時" + nowMin + "分" + nowSec +"秒";
-           document.getElementById("RealtimeClockArea").innerHTML = msg;
-        }
-        setInterval('showClock1()',1000);
+    <script src="js/time.js">
+        
     </script>
     <h2><%=@date.year%>年<%=@date.month%>月<%=@date.day%>日(<%=@week%>) <a id="RealtimeClockArea">現在時刻</a></h2>
     <div class="center-hrizontal">
