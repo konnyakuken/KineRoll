@@ -1,9 +1,11 @@
 $(function(){
 	      $(".fa-star").click(function(){
-	      	
-	        var jacket = $("#jacket").val();
-	        var release = $("#release").val();
-	        var title = $("#title").val();
+			var like=$(this);
+	        var jacket = $(this).next().text();//.val()はinput()内でしか入らない
+	        var release = $(this).next().next().text();
+	        var title = $(this).next().next().next().text();
+	        
+
 	        var request = $.ajax({
 	          type: "POST",
 	          url: "/new/favorite",
@@ -24,11 +26,11 @@ $(function(){
 		        })
 		        .done(function(res){
 		        	if(res.num==1){
-		        		$('#like').attr('class', 'fas fa-star fa-2x');
+		        		like.attr('class', 'fas fa-star fa-2x');
 		        	}else{
-		        		$('#like').attr('class', 'far fa-star fa-2x');
+		        		like.attr('class', 'far fa-star fa-2x');
 		        	}
           		});
 	      	});
-	     });
-		});
+     });
+});

@@ -6,6 +6,29 @@
     		<% @movies.each do |favorite| %>
     			    <% movie=Movie.find(favorite.movie_id) %>
     				<div class="post center-vertical">
+    				    <% work=Movie.find_by(title: movie["title"]) %>
+						<% if work!=nil %>
+							<%if Interest.find_by(user_id: session[:user],movie_id: work.id)!=nil%>
+								<i class="fas fa-star fa-2x"  id="like" ></i>
+								<i hidden>https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%></i>
+								<i hidden><%= movie["release_date"]%></i>
+								<i hidden><%= movie["title"]%></i>
+							<%else%>
+								<i class="far fa-star fa-2x" id="like" ></i>
+								<i hidden>https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%></i>
+								<i hidden><%= movie["release_date"]%></i>
+								<i hidden><%= movie["title"]%></i>
+							<%end%>
+						<%else%>
+							<i class="far fa-star fa-2x" id="like" ></i>
+							<i hidden>https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%></i>
+							<i hidden><%= movie["release_date"]%></i>
+							<i hidden><%= movie["title"]%></i>
+						<% end %>
+						<form class="col-lg-5" action="/new/post" method="post">
+						        <input type="hidden" name="movie_id" value="<%=movie.id%>">
+						        <input type="hidden" name="title" value="<%=movie["title"]%>">
+		    			</form>
                 		<img src="<%= movie.jacket%>">
                 		<p><%= movie.title%></p>
                 		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
@@ -16,4 +39,5 @@
     	    <h2>お気に入り登録した作品がありません</h2>
     	<% end %>
 	</div>
+	<script  src="js/favorite.js"></script>
 </body>
