@@ -6,21 +6,25 @@
 	<link rel="stylesheet" href="/assets/css/index.css">
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="https://kit.fontawesome.com/e3f366b32c.js" crossorigin="anonymous"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" type="text/javascript"></script><%#moment.jsの導入%>
 <body>
 	
-<nav class="center-hrizontal">
-	<a href="/">むびコレ（仮）</a>
-	
-	<% if !current_user.nil? %><%# ログインしているとき%>
-		<div>
-			<a href="/search">映画検索</a>
-			<a href="/signout">ログアウト</a>
-		</div>
-	<% else %>
-		<a href="/signup">新規登録</a>
-	<% end %>
-	
-</nav>
+    <% if !@update.present? %><%#js更新時にここが重複して表示されないように%>
+		<nav class="center-hrizontal">
+			<a href="/">むびコレ（仮）</a>
+			
+			<% if !current_user.nil? %><%# ログインしているとき%>
+				<div>
+					<a href="/search">映画検索</a>
+					<a href="/signout">ログアウト</a>
+				</div>
+			<% else %>
+				<a href="/signup">新規登録</a>
+			<% end %>
+			
+		</nav>
+	<%end%>
 <main>
 
 <%= yield %>

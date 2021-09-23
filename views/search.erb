@@ -33,7 +33,7 @@
 								<input type="hidden" class="jacket" name="jacket" id="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
 								<input type="hidden" class="release" name="release" id="release" value="<%= movie["release_date"]%>">
 								<input type="hidden" class="title" name="title" id="title" value="<%= movie["title"]%>">
-							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="送信する">
+							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="<%= movie["title"]%>">
 		    				</form>
 							<p><%= movie["release_date"]%></p>
 							<p><%= movie["title"]%></p>
@@ -70,7 +70,7 @@
 								<input type="hidden" name="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
 								<input type="hidden" name="release" value="<%= movie["release_date"]%>">
 								<input type="hidden" name="title" value="<%= movie["title"]%>">
-							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="送信する">
+							 	<input type="image"  src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>" alt="<%= movie["title"]%>">
 		    				</form>
 							<p><%= movie["release_date"]%></p>
 							<p><%= movie["title"]%></p>

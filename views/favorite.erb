@@ -28,8 +28,9 @@
 						<form class="col-lg-5" action="/new/post" method="post">
 						        <input type="hidden" name="movie_id" value="<%=movie.id%>">
 						        <input type="hidden" name="title" value="<%=movie["title"]%>">
+							 	<input type="image"  src="<%= movie.jacket%>" alt="<%=movie["title"]%>">
 		    			</form>
-                		<img src="<%= movie.jacket%>">
+                		
                 		<p><%= movie.title%></p>
                 		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
                 		
