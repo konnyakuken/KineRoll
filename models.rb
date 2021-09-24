@@ -7,7 +7,7 @@ class User<ActiveRecord::Base
     has_many :interests
     has_many :schedules
     has_many :histories
-    has_secure_password
+    has_secure_password validations: false
 end
 
 class Interest<ActiveRecord::Base

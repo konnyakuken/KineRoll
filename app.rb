@@ -91,7 +91,7 @@ post "/signin"do
     if user && user.authenticate(params[:password])
        session[:user]=user.id 
     end
-    redirect "/home"
+    redirect "/"
 end
 
 get "/signup"do
@@ -167,34 +167,29 @@ end
 post "/home/edit/:id" do
      user=User.find(params[:id])
      
-    if params[:password]==params[:password_confirmation]
-        if user.authenticate_password(params[:password])!=false
-            user.name=params[:name]
-            user.password=params[:password]
-            user.password_confirmation=params[:password_confirmation]
-            user=User.find(session[:user])
-            
-            
-             img_url=""
-            # p params[:file]
-=begin
-            if params[:file]!=""
-                img=params[:file]
-                tempfile=img[:tempfile]
-                upload=Cloudinary::Uploader.upload(tempfile.path)
-                img_url=upload["url"]
-                user.icon=img_url
-            end
-=end
-             user.save
-             redirect"/home"
+     if params[:password]==params[:password_confirmation]
+         user.name=params[:name]
+         user.password=params[:password]
+         user.password_confirmation=params[:password_confirmation]
+        #p user.authenticate_password(params[:password_confirmation])
+        #p params[:password_confirmation]
+        
+         img_url=""
+        # p params[:file]
+        if params[:file]!=""
+            img=params[:file]
+            tempfile=img[:tempfile]
+            upload=Cloudinary::Uploader.upload(tempfile.path)
+            img_url=upload["url"]
+            user.icon=img_url
         end
+         user.save
+        redirect"/home"
     else
-        @password=false
+        p "aaaa"
+        @password=true
         erb:user_edit
     end
-    
-    
 end
 
 
