@@ -12,6 +12,9 @@
                 <input  name="file" type="file"><br>
 			    <label for="name">新しいユーザー名</label><br>
 				<input type="text" id="name" name="name" value="<%=current_user.name%>" required><br><br>
+				<% if @password.present? %>
+                    <h2>2つとも同じパスワードを入力してください</h2>
+                <%end%>
 				<label for="password">新しいパスワード</label><br>
 			    <input  name="password" id="password" type="password" placeholder="パスワード" required><br><br>
 			    <label for="password_confirmation">新しいパスワードの再入力</label><br>

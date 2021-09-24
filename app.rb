@@ -71,6 +71,7 @@ end
 
 get "/"do
     session[:name_dup]=nil
+
     
     pop_movie
     if session[:user]==nil#ログイン済みの場合ホーム画面に遷移するように
@@ -139,19 +140,22 @@ end
 
 post "/search" do
     
-    Tmdb::Api.key("a8ba2cc864f08aa8915a569d0640347f")
-    Tmdb::Api.language("ja")
+    if params[:keyword]!=""
+        base_url="https://api.themoviedb.org/3/search/movie?api_key=a8ba2cc864f08aa8915a569d0640347f&language=ja-JA&query="
+        keyword=URI.encode_www_form_component(params[:keyword])
+        
+        
+        uri=URI(base_url + keyword)
+        #uri=URI.encode_www_form_component(uri, enc=nil)
+        res=Net::HTTP.get_response(uri)
+        returned_JSON=JSON.parse(res.body)
+        
+        @movies=returned_JSON["results"]
+        @url=base_url
+    else
+        pop_movie
+    end
     
-    base_url="https://api.themoviedb.org/3/search/movie?api_key=a8ba2cc864f08aa8915a569d0640347f&language=ja-JA&query="
-    keyword=URI.encode_www_form_component(params[:keyword])
-
-    uri=URI(base_url + keyword)
-    #uri=URI.encode_www_form_component(uri, enc=nil)
-    res=Net::HTTP.get_response(uri)
-    returned_JSON=JSON.parse(res.body)
-    
-    @movies=returned_JSON["results"]
-    @url=base_url
 
     erb :search 
 end
@@ -162,20 +166,35 @@ end
 
 post "/home/edit/:id" do
      user=User.find(params[:id])
-     user.name=params[:name]
-     user.password=params[:password]
-     user.password_confirmation=params[:password_confirmation]
-     img_url=""
-    # p params[:file]
-    if params[:file]!=""
-        img=params[:file]
-        tempfile=img[:tempfile]
-        upload=Cloudinary::Uploader.upload(tempfile.path)
-        img_url=upload["url"]
-        user.icon=img_url
+     
+    if params[:password]==params[:password_confirmation]
+        if user.authenticate_password(params[:password])!=false
+            user.name=params[:name]
+            user.password=params[:password]
+            user.password_confirmation=params[:password_confirmation]
+            user=User.find(session[:user])
+            
+            
+             img_url=""
+            # p params[:file]
+=begin
+            if params[:file]!=""
+                img=params[:file]
+                tempfile=img[:tempfile]
+                upload=Cloudinary::Uploader.upload(tempfile.path)
+                img_url=upload["url"]
+                user.icon=img_url
+            end
+=end
+             user.save
+             redirect"/home"
+        end
+    else
+        @password=false
+        erb:user_edit
     end
-     user.save
-    redirect"/home"
+    
+    
 end
 
 

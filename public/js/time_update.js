@@ -12,7 +12,7 @@ function timeCheck2() {
     // diffメソッドを使って、現時刻と2017年7月1日の日時の差を、ミリ秒で取得
     var date_first=$('.date').first().text()
     //console.log(date_first);
-    //console.log(moment())
+    //console.log(moment());
     const diff = moment( date_first ).diff( moment() );
     
     // ミリ秒からdurationオブジェクトを生成
@@ -70,7 +70,7 @@ function timeCheck2() {
           	});
     }*/
     // 出力
-    console.log( `${days}日と${hours}時間${minutes}分${seconds}秒` );
+    //console.log( `${days}日と${hours}時間${minutes}分${seconds}秒` );
     
         }
         setInterval('timeCheck2()',1000);

@@ -1,6 +1,7 @@
 <body>
     <script src="js/time.js"></script>
     <script src="js/time_update.js"></script>
+    <script src="js/time_left.js"></script>
     <h2><%=@date.year%>年<%=@date.month%>月<%=@date.day%>日(<%=@week%>) <a id="RealtimeClockArea">現在時刻</a></h2>
     <div class="center-hrizontal">
         
@@ -14,9 +15,11 @@
                     		<p><%= movie.title%></p>
                     		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
                     		<p><%=task.cinema%></p>
-                    		<p hidden class=date><%=task.date.strftime("%Y-%m-%d %H:%M:%S")%></p>
                     		<p>日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
                     		<p>メモ: <%=task.note%></p>
+                    		<p>上映開始まで</p>
+                    		<p class=time></p>
+                    		<p hidden class=date><%=task.date.strftime("%Y-%m-%d %H:%M:%S")%></p>
                     		<a href="/task/delete/<%=task.id%>">削除</a>
                     		<a href="/task/edit/<%=task.id%>">編集</a>
                     	</div>
