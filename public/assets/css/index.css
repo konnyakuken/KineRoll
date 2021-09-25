@@ -21,7 +21,7 @@
   .post {
     margin: 20px;
     padding: 10px;
-    width: 200px;
+    width: 220px;
     border-radius: 5px;
     word-break: break-all;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
@@ -97,3 +97,76 @@
  color: #ffff66;
  margin-left: 20px;
  }
+ 
+ 
+ /*ハンバーガー*/
+ .btn {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+}
+
+.btn__text{
+  display: block;
+  margin-top: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn__menu{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #26344a;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition: all 0.5s;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.btn__menu::before{
+  display: block;
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #26344a;
+  transition: all 0.5s;
+}
+
+.btn__menu::after{
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #26344a;
+  transition: all 0.5s;
+}
+
+.btn__menu.active{
+  background: transparent;
+}
+
+.btn__menu.active::before{
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.btn__menu.active::after{
+  bottom: 0;
+  transform: rotate(45deg);
+}

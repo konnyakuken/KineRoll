@@ -7,14 +7,14 @@
 <section >
 	<h1></h1>
 	<%# ログイン中は見えないようにする%>
-	<div>
+	<div class="center-hrizontal">
 		<% if current_user.nil? %>
 		    <form class="col-lg-5" action="/signin" method="post">
 		        <div class="controls">
 		            <div class="form-group">
 		                <input class="form-control input-lg" name="name" placeholder="ユーザー名">
 		                <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
-		                <input class="form-control " type="submit" value="ログイン">
+		                <input class="form-control"  type="submit" value="ログイン">
 		            </div>
 		                
 		        </div>
@@ -23,7 +23,7 @@
 	</div>
 </section>
 <body>
-	<h2>人気映画</h2>
+	<h2 class="center-hrizontal">人気映画</h2>
 		    <div class="center-hrizontal">
 				<% @movies.each do |movie| %>
 					<div class="post center-vertical">

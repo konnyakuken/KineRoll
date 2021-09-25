@@ -1,4 +1,6 @@
-<body>
+<body class="center-vertical">
+    <h2 style="text-align:center">どちらに追加をするのか選択</h2>
+    
     <div class="post center-vertical">
 		<img src="<%= @movie.jacket%>">
 		<p><%= @movie.title%></p>
@@ -6,7 +8,7 @@
 		<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
 	</div>
     
-    <h2>どちらに追加をするのか選択</h2>
+    
     <form  action="/new/post/task" method="get">
         <input type="submit" value="観る予定の作品">
     </form>

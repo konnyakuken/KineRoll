@@ -25,7 +25,7 @@
 							<i hidden><%= movie["release_date"]%></i>
 							<i hidden><%= movie["title"]%></i>
 						<% end %>
-						<form class="col-lg-5" action="/new/post" method="post">
+						<form  action="/new/post" method="post">
 						        <input type="hidden" name="movie_id" value="<%=movie.id%>">
 						        <input type="hidden" name="title" value="<%=movie["title"]%>">
 							 	<input type="image"  src="<%= movie.jacket%>" alt="<%=movie["title"]%>">
