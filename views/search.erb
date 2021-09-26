@@ -66,7 +66,7 @@
 									<i hidden><%= movie["release_date"]%></i>
 									<i hidden><%= movie["title"]%></i>
 								<% end %>
-							<form class="col-lg-5" action="/new/post" method="post">
+							<form action="/new/post" method="post">
 								<input type="hidden" name="jacket" value="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
 								<input type="hidden" name="release" value="<%= movie["release_date"]%>">
 								<input type="hidden" name="title" value="<%= movie["title"]%>">

@@ -12,7 +12,7 @@
 			<% @array.each.reverse_each do |array_id| %>
 				    <% movie=Movie.find(History.find(array_id).movie_id ) %>
 					<div class="post center-vertical">
-						<form class="col-lg-5" action="/finish/detail/<%=array_id%>" method="get">
+						<form  action="/finish/detail/<%=array_id%>" method="get">
 							 	<input type="image"  src="<%= movie.jacket%>" alt="送信する">
 		    			</form>
 	            		<p><%= movie.title%></p>
