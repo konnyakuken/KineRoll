@@ -1,20 +1,43 @@
-<div class="center-vertical" >
-    <form   action="/signup" method="post" enctype="multipart/form-data"><%# enctype属性でファイル送信を可能に%>
-        <div  style="text-align:center">
-            <div >
-                <h2>新規登録</h2>
-                <%if session[:name_dup]!=nil%>
-                    <h2>そのユーザー名は既に存在しています</h2>
-                <%end%>
-                <input  name="name" placeholder="ユーザー名"><br><!--placeholderはフォーム内に文章-->
-                <!--<input name="mail" placeholder="メールアドレス"><br>-->
-                <input  name="password" type="password" placeholder="パスワード"><br>
-                <input  name="password_confirmation" type="password" placeholder="パスワードをもう一度入力"><br>
-                <input  name="file" type="file">
+<%if @num==1%> 
+    <div id="ajaxreload" >
+        <h3 class="center-vertical">新規登録</h3>
+        <%if session[:name_dup]!=nil%>
+            <h3>そのユーザー名は既に存在しています</h3>
+        <%end%>
+        <form   action="/signup" method="post" enctype="multipart/form-data"><%# enctype属性でファイル送信を可能に%>
+            <div  style="text-align:center">
+                    <input class="form-control input-lg" name="name" placeholder="ユーザー名"><!--placeholderはフォーム内に文章-->
+                    <!--<input name="mail" placeholder="メールアドレス"><br>-->
+                    <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
+                    <input class="form-control input-lg" name="password_confirmation" type="password" placeholder="パスワードをもう一度入力">
+                    <!--<input  name="file" type="file">-->
+                    <input class="form-control" type="submit" value="新規登録">
             </div>
-            <div >
-                <input  type="submit" value="新規登録">
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+        <br>
+      	<form>
+    		<input class="signin" type="button" value="ログインする" >
+    	</form>
+    	<script src="js/signin.js"></script>
+    </div>
+<%else%>
+    <div id="ajaxreload">
+				<h3 class="center-vertical">ログイン</h3>
+				
+			    <form  action="/signin" method="post">
+			        <div class="controls">
+			            <div class="form-group">
+			                <input class="form-control input-lg" name="name" placeholder="ユーザー名">
+			                <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
+			                <input class="form-control"  type="submit" value="ログイン">
+			            </div>
+			            
+			          	<form>
+		    				<input class="signup" type="button" value="新規登録する" >
+		    			</form>
+			        </div>
+			    </form>
+	    </div>
+	    <p></p>
+	    <script src="js/signup.js"></script>
+<%end%>

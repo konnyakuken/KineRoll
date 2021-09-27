@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>タイトル</title>
+</head>
+<section >
+	<h1></h1>
+	<%# ログイン中は見えないようにする%>
+	<div class="center-hrizontal">
+		<% if current_user.nil? %>
+            <div id="ajaxreload" >
+                <h3 class="center-vertical">新規登録</h3>
+                <%if session[:name_dup]!=nil%>
+                    <h3>そのユーザー名は既に存在しています</h3>
+                <%end%>
+                
+                <form   action="/signup" method="post" enctype="multipart/form-data"><%# enctype属性でファイル送信を可能に%>
+                    <div  style="text-align:center">
+                            <input class="form-control input-lg" name="name" placeholder="ユーザー名"><!--placeholderはフォーム内に文章-->
+                            <!--<input name="mail" placeholder="メールアドレス"><br>-->
+                            <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
+                            <input class="form-control input-lg" name="password_confirmation" type="password" placeholder="パスワードをもう一度入力">
+                            <!--<input  name="file" type="file">-->
+                            <input class="form-control" type="submit" value="新規登録">
+                    </div>
+                </form>
+                <br>
+              	<form>
+            		<input class="signin" type="button" value="ログインする" >
+            	</form>
+            	<script src="js/signin.js"></script>
+            </div>
+	    <% end %>
+	    <script src="js/signup.js"></script>
+	</div>
+</section>
+<body>
+	<p></p>
+	<h2 class="center-hrizontal">人気映画</h2>
+		    <div class="center-hrizontal">
+				<% @movies.each do |movie| %>
+					<div class="post center-vertical">
+						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+						<p><%= movie["release_date"]%></p>
+						<p><%= movie["title"]%></p>
+					
+						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+					</div>
+				<% end %>
+			</div>
+</body>
+</html>

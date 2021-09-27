@@ -86,6 +86,12 @@ get "/home"do
    erb :home 
 end
 
+get "/signin"do
+    @update=true
+    @num=0
+    erb :signup
+end
+
 post "/signin"do
     user=User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
@@ -95,6 +101,8 @@ post "/signin"do
 end
 
 get "/signup"do
+    @update=true
+    @num=1
     erb :signup
 end
 
@@ -122,9 +130,14 @@ post "/signup"do
         redirect "/home"
     else
         session[:name_dup]=true
-        redirect"/signup"
+        redirect"/re_signup"
     end
     
+end
+
+get "/re_signup"do
+   pop_movie
+   erb:re_signup 
 end
 
 get "/signout" do#ログアウト
@@ -405,6 +418,9 @@ get "/update/schedule"do
             id=@array[0][1]
             @array.delete([date,id])
             schedule.destroy
+            if @array.empty?
+                break
+            end
         end
     end
     @update=true

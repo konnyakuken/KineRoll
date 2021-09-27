@@ -2,7 +2,8 @@
     <script src="js/time.js"></script>
     <script src="js/time_update.js"></script>
     <script src="js/time_left.js"></script>
-    <h2><%=@date.year%>年<%=@date.month%>月<%=@date.day%>日(<%=@week%>) <a id="RealtimeClockArea">現在時刻</a></h2>
+    <p></p>
+    <h2 class="center-vertical"> <%=@date.year%>年<%=@date.month%>月<%=@date.day%>日(<%=@week%>) <a id="RealtimeClockArea">現在時刻</a></h2>
     <div class="center-hrizontal">
         
         <% if !@movies.empty? %>
