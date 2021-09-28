@@ -9,18 +9,20 @@
 	<%# ログイン中は見えないようにする%>
 	<div class="center-hrizontal">
 		<% if current_user.nil? %>
+			<p></p>
 			<div id="ajaxreload">
+				<p></p>
 				<h3 class="center-vertical">ログイン</h3>
 			    <form  action="/signin" method="post">
 			        <div class="controls">
 			            <div class="form-group">
-			                <input class="form-control input-lg" name="name" placeholder="ユーザー名">
-			                <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
-			                <input class="form-control"  type="submit" value="ログイン">
+			                <input class="col-xs-4 input-lg" name="name" placeholder="ユーザー名"><br>
+			                <input class="col-xs-4 input-lg" name="password" type="password" placeholder="パスワード"><br>
+			                <input class="form-control btn-flat-border"  type="submit" value="ログイン">
 			            </div>
 			            
 			          	<form>
-		    				<input class="signup" type="button" value="新規登録する" >
+		    				<input class="signup btn-flat-border form-control" type="button" value="新規登録はこちら" >
 		    			</form>
 			        </div>
 			    </form>
