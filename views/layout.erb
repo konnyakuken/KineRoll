@@ -20,44 +20,51 @@
 	
 	   <meta name="viewport" content="width=device-width">
 <body>
+	<% if !@update.present? %><%#js更新時にここが重複して表示されないように%>
+		<% if !current_user.nil? %><%# ログインしているとき%>
+			<button type="button" class="menu-btn">
+	      		<i class="fa fa-bars" aria-hidden="true"></i>
+		    </button>
+		    <div class="menu">
+		      <a class="menu__item" href="/">home</a>
+		      <a class="menu__item" href="/task">schedule</a>
+		      <a class="menu__item" href="/search">search</a>
+		      <a class="menu__item" href="/signout">logout</a>
+		      <%#<div class="menu__item"></div>%>
+		    </div>
 	
+		      <script>
+			      	$(function(){
+					  $('.menu-btn').on('click', function(){
+					  	
+					    $('.menu').toggleClass('is-active');
+					  });
+					
+					  
+					  //メニュー以外をクリックで閉じる
+				      var nav = $('.menu');
+				      $('.content').click(function() {
+				        if(nav.hasClass('is-active')) {
+				          $('.menu').toggleClass('is-active');
+				        }
+				      });
 	
-    <% if !@update.present? %><%#js更新時にここが重複して表示されないように%>
+				});</script>
+		<% else %>
+				<%#<a class="signup" href="/signup">新規登録</a>%>
+		<% end %>
     	<nav></nav>
-		<nav class="center-hrizontal" id="menu">
+		<nav class="center-hrizontal content" id="menu">
 			
 			
 			<a href="/">むびコレ（仮）</a>
 			
-			<% if !current_user.nil? %><%# ログインしているとき%>
-				<button type="button" class="menu-btn">
-		      		<i class="fa fa-bars" aria-hidden="true"></i>
-			    </button>
-			    <div class="menu">
-			      <a class="menu__item" href="/">home</a>
-			      <a class="menu__item" href="/task">schedule</a>
-			      <a class="menu__item" href="/search">search</a>
-			      <a class="menu__item" href="/signout">logout</a>
-			      <%#<div class="menu__item"></div>%>
-			    </div>
-			    <script
-			      src="https://code.jquery.com/jquery-3.4.1.js"
-			      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			      crossorigin="anonymous"></script>
-			      <script>
-				      	$(function(){
-						  $('.menu-btn').on('click', function(){
-						    $('.menu').toggleClass('is-active');
-						  });
-						}());</script>
-			<% else %>
-					<%#<a class="signup" href="/signup">新規登録</a>%>
-			<% end %>
+			
 		
 		</nav>
 		  
 	<%end%>
-<main>
+<main class="content">
 <p></p>
 <%= yield %>
 

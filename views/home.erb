@@ -2,31 +2,39 @@
 	<div class="center-vertical">
 		<p></p>
 		<h1>ようこそ <%=current_user.name%>さん</h1>
+		<p></p>
 	</div>
-		<div>
-			<%# if current_user.icon=="" %>
-				<!--<a><img src="/assets/img/eigakan.png" alt="user_image" width="40" height="40"></a>-->
-			<%# else %>
-				<!--<a><img src="<%#=current_user.icon%>" alt="user_image" width="40" height="40"></a>-->
-			<%# end %>
-			<form action="/home/edit/<%=current_user.id%>" method="get">
-			    <input type="submit" value="ユーザー情報の編集">
-			</form><br>
-			
-			<form action="/task" method="get">
-			    <input type="submit" value="スケジュール一覧表示">
-			</form><br>
-			
-			<form action="/favorite" method="get">
-			    <input type="submit" value="お気に入りした作品">
-			</form><br>
-			
-			<form action="/finish" method="get">
-			    <input type="submit" value="観た作品">
-			</form><br>
+		<div class="center-vertical">
+			<div class="flex-container">
+				<%# if current_user.icon=="" %>
+					<!--<a><img src="/assets/img/eigakan.png" alt="user_image" width="40" height="40"></a>-->
+				<%# else %>
+					<!--<a><img src="<%#=current_user.icon%>" alt="user_image" width="40" height="40"></a>-->
+				<%# end %>
+				<div class="flex-item">
+					<form action="/home/edit/<%=current_user.id%>" method="get">
+					    <input type="submit" value="ユーザー情報の編集">
+					</form><br>
+						
+					<form action="/favorite" method="get">
+					    <input type="submit" value="お気に入りした作品">
+					</form><br>
+				</div>
+
+				<div class="flex-item">
+					<form action="/task" method="get">
+					    <input type="submit" value="スケジュール一覧表示">
+					</form><br>
+					
+					<form action="/finish" method="get">
+					    <input type="submit" value="観た作品">
+					</form><br>				
+				</div>
+			</div>
 		</div>
 </section>
 <body>
+	<p></p>
 	<h2 class="center-hrizontal">人気映画</h2>
 		    <div class="center-hrizontal">
 				<% @movies.each do |movie| %>

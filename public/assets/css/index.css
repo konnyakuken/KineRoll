@@ -186,5 +186,19 @@
 
 .btn-log{
   width: 185px;
+}
 
+
+/* 親要素(コンテナ) */
+.flex-container {
+	display: flex;
+
+    align-items: center;
+	flex-direction: row;
+
+}
+/* 子要素(アイテム) */
+.flex-item {
+	background-color: #343434;
+	color: #fff;
 }
