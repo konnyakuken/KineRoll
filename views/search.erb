@@ -1,9 +1,10 @@
 <section class="center-vertical">
 	<h1>作品検索</h1>
-	<form action="/search" method="post">
+	<form class="search_container " action="/search" method="post" >
 		<input type="text" name="keyword" placeholder="キーワード">
-		<input type="submit" value="検索">
+		<input class="fas fa-search" type="submit"value="&#xf002">
 	</form>
+	<p></p>
 	<% if @url=="https://api.themoviedb.org/3/movie/popular?api_key=a8ba2cc864f08aa8915a569d0640347f&language=ja-JA&page=1" %>
 		<h2>人気映画</h2>
 		<h3>画像をクリックで選択</h3>

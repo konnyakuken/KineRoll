@@ -38,7 +38,7 @@
 	<h2 class="center-hrizontal">人気映画</h2>
 		    <div class="center-hrizontal">
 				<% @movies.each do |movie| %>
-					<div class="post center-vertical">
+					<div class="post pop center-vertical">
 						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
 						<p><%= movie["release_date"]%></p>
 						<p class="title"><%= movie["title"]%></p>

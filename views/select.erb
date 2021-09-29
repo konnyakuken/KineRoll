@@ -1,19 +1,22 @@
 <body class="center-vertical">
     <h2 style="text-align:center">どちらに追加をするのか選択</h2>
     
-    <div class="post center-vertical">
-		<img src="<%= @movie.jacket%>">
-		<p><%= @movie.title%></p>
-		<p><%= Date.parse(@movie.release.to_s)%></p>
-		<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+    <div class="select post center-vertical ">
+        <div class="center-vertical">
+    		<img src="<%= @movie.jacket%>">
+    		<p><%= @movie.title%></p>
+    		<p><%= Date.parse(@movie.release.to_s)%></p>
+    		<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+		</div>
 	</div>
     
-    
-    <form  action="/new/post/task" method="get">
-        <input type="submit" value="観る予定の作品">
-    </form>
-    <form  action="/new/post/history" method="get">
-        <input type="submit" value="観た作品">
-    </form>
+    <div class="flex-container">
+        <form  action="/new/post/task" method="get">
+            <input class="btn-home-border" type="submit" value="スケジュールに追加">
+        </form>
+        <form  action="/new/post/history" method="get">
+            <input class="btn-home-border" type="submit" value="　観た作品に追加　">
+        </form>
+    </div>
     
 </body>

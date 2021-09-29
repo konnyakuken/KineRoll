@@ -3,5 +3,5 @@ $(".title").flowtype({
 
     maxFont:  9999,
     minFont:   1,
-    fontRatio:  35
+    fontRatio:  $(".title").text().length
 });
