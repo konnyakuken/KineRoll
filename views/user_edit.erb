@@ -2,6 +2,10 @@
 
     <h2>ユーザー情報の編集</h2>
 	<h1><%#=current_user.name%></h1>
+	<p></p>
+		<% if @password.present? %>
+            <h4>2つとも同じパスワードを入力してください</h4>
+        <%end%>
 		<div>
 		    <%#<h4>アイコン画像</h4>%>
 			<%# if current_user.icon=="" %>
@@ -11,17 +15,15 @@
 			<%# end %>
 			<form action="/home/edit/<%=current_user.id%>" method="post">
                 <%#<input  name="file" type="file"><br>%>
-			    <label for="name">新しいユーザー名</label><br>
+			    <label for="name">ユーザー名</label><br>
 				<input type="text" id="name" name="name" value="<%=current_user.name%>" required><br><br>
-				<% if @password.present? %>
-                    <h2>2つとも同じパスワードを入力してください</h2>
-                <%end%>
-				<label for="password">新しいパスワード</label><br>
+				
+				<label  for="password">新規パスワード</label><br>
 			    <input  name="password" id="password" type="password" placeholder="パスワード" required><br><br>
-			    <label for="password_confirmation">新しいパスワードの再入力</label><br>
+			    <label for="password_confirmation">新規パスワードの再入力</label><br>
                 <input  name="password_confirmation" id="password_confirmation" type="password" placeholder="パスワードをもう一度入力" required><br>
                 
-                <input type="submit" value="更新">
+                <input class="btn-flat-border  form-control" type="submit" value="更新">
 			</form>
 		</div>
 </section>

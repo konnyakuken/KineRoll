@@ -13,21 +13,21 @@
 				<%# end %>
 				<div class="flex-item">
 					<form action="/home/edit/<%=current_user.id%>" method="get">
-					    <input type="submit" value="ユーザー情報の編集">
+					    <input class="btn-home-border form-control" type="submit" value="ユーザー情報の編集" >
 					</form><br>
 						
 					<form action="/favorite" method="get">
-					    <input type="submit" value="お気に入りした作品">
+					    <input class="btn-home-border form-control" type="submit" value="お気に入りした作品">
 					</form><br>
 				</div>
 
 				<div class="flex-item">
 					<form action="/task" method="get">
-					    <input type="submit" value="スケジュール一覧表示">
+					    <input class="btn-home-border form-control" type="submit" value="スケジュール一覧表示">
 					</form><br>
 					
 					<form action="/finish" method="get">
-					    <input type="submit" value="観た作品">
+					    <input class="btn-home-border form-control" type="submit" value="観た作品一覧表示">
 					</form><br>				
 				</div>
 			</div>
@@ -41,11 +41,12 @@
 					<div class="post center-vertical">
 						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
 						<p><%= movie["release_date"]%></p>
-						<p><%= movie["title"]%></p>
+						<p class="title"><%= movie["title"]%></p>
 					
 						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
 					</div>
 				<% end %>
 			</div>
+			<script src="js/font.js"></script>
 </body>
 </html>

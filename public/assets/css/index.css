@@ -35,6 +35,16 @@
     word-break: break-all;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
   }
+  
+  .post-fa {
+    margin: 20px;
+    padding: 10px;
+    width: 220px;
+    height:440px;
+    border-radius: 5px;
+    word-break: break-all;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+  }
 
 
 
@@ -97,7 +107,9 @@
  height: 30px;
  font-size: 25px;
  color: #808080; 
- margin-left: 20px;
+ /*margin-left: 20px;*/
+ text-align: center;
+ padding: 1px 0;
  }
 
 .fas.fa-star.fa-2x {
@@ -105,7 +117,9 @@
  height: 30px;
  font-size: 25px;
  color: #ffd900;
- margin-left: 20px;
+ /*margin-left: 20px;*/
+ text-align: center;
+  padding: 1px 0;
  }
  
  
@@ -195,10 +209,42 @@
 
     align-items: center;
 	flex-direction: row;
+	gap: 10px 20px; /* 余白 */
 
 }
 /* 子要素(アイテム) */
 .flex-item {
-	background-color: #343434;
+
 	color: #fff;
+}
+
+
+
+.btn-home-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #303030;
+  background: white;
+  border: solid 1px #8c8c8c;
+  border-radius: 3px;
+  transition: .4s;
+  font-size: 130%;
+    /* 縦横中央揃え */
+  text-align: center;
+
+}
+
+.btn-home-border:hover {
+  background: #646464;
+  color: white;
+}
+
+.title{
+  text-align: center;
+  width:200px;
+  height:30px;
+  /*font-size: 1vmin;
+  font-size: 3vmax;*/
+  word-break:break-word;
 }
