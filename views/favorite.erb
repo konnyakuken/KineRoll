@@ -5,7 +5,7 @@
         <% if !@movies.empty? %>
     		<% @movies.each do |favorite| %>
     			    <% movie=Movie.find(favorite.movie_id) %>
-    				<div class="post center-vertical">
+    				<div class="post-fa center-vertical">
     				    <% work=Movie.find_by(title: movie["title"]) %>
 						<% if work!=nil %>
 							<%if Interest.find_by(user_id: session[:user],movie_id: work.id)!=nil%>

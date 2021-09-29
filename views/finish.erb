@@ -1,11 +1,12 @@
 <body>
-    <form action="/finish/duplicate" method="get">
-    	<input type="submit" value="レビュー一覧表示">
+    <form class="center-hrizontal" action="/finish/duplicate" method="get">
+    	<input class="btn-flat-border" type="submit" value="レビュー一覧表示">
     </form>
-    	<div  class="center-hrizontal">
-    		<h2>視聴済み</h2><br>
-    		<h1><%=@array.size%></h1><h2>作品</h2>
-    	</div>
+    <p></p>
+	<div  class="center-hrizontal">
+		<h2>視聴済み</h2><br>
+		<h2><%=@array.size%></h2><h2>作品</h2>
+	</div>
     <div class="center-hrizontal">
     	
     	<%if !@movies.empty? %>

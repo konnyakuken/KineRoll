@@ -1,7 +1,8 @@
 <body>
-    <form action="/finish" method="get">
-    	<input type="submit" value="作品一覧表示">
+    <form class="center-hrizontal" action="/finish" method="get">
+    	<input class=" btn-flat-border" type="submit" value="作品一覧表示">
     </form>
+    <p></p>
     <div class="center-hrizontal">
     	<%if !@movies.empty? %>
 			<% @movies.each.reverse_each do |task| %>
