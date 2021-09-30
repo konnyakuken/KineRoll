@@ -1,21 +1,33 @@
 <body>
+    <form class="center-hrizontal" action="/finish" method="get">
+    	<input class=" btn-flat-border" type="submit" value="　戻る　">
+    </form>
+    <p></p>
     <div class="center-hrizontal">
-        <div class="post center-vertical">
-    		<img src="<%= @movie.jacket%>">
-    		<p><%= @movie.title%></p>
-    		<p>公開日 <%= Date.parse(@movie.release.to_s)%></p>
-        </div>
+        <div>
 		<% @reviews.each.reverse_each do |review| %>
-			<div>
-        		<p><%=review.cinema%></p>
-        		<p>日時:<%=review.date.strftime("%Y-%m-%d %H:%M")%></p>
-        		<p>コメント: <%=review.comment%></p>
-        		<p class="result-rating-rate">
-                    <span class="star5_rating" data-rate="<%=review.star%>"></span>
-                </p>
-        		<a href="/finish/delete/<%=review.id%>/detail">削除</a>
-        		<a href="/finish/edit/<%=review.id%>/detail">編集</a>
-        	</div>
+            <div class="card task mb-3" style="max-width: 640px;">
+    		  <div class="row g-0">
+    		    <div class="col-md-8">
+    		      <div class="card-body">
+    		        <h5 class="card-title"><%= @movie.title%></h5>
+    		        <p class="card-text">映画館: <%=review.cinema%></p>
+    		        <p class="card-text" >観賞日時:<%=review.date.strftime("%Y-%m-%d %H:%M")%></p>
+    		        <p class="card-text">コメント: <%=review.comment%></p>
+        		    <p class="result-rating-rate">
+                        <span class="star5_rating" data-rate="<%=review.star%>"></span>
+                    </p> 
+                    <p class="card-text"><small class="text-muted">公開日 <%= Date.parse(@movie.release.to_s)%></small><a class="delete-btn far fa-trash-alt" href="/finish/delete/<%=review.id%>/detail"></a></P>
+    		      </div>
+    		      
+    		    </div>
+    		    <div class="col-md-4 ticket">
+        		    <a href="/finish/edit/<%=review.id%>/detail"><img class="center-vertical schedule-jacket" src="<%= @movie.jacket%>" ></a>
+    		        <p class="card-text"><small class="text-muted">画像をクリックで編集</small></p>
+    		    </div>
+    		  </div>
+    		</div>
 		<% end %>
+	    </div>
 	</div>
 </body>
