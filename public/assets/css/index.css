@@ -12,7 +12,7 @@
       height: 70px;
     width: 100%;
     background-color: #646464;
-
+    z-index:1;
   }
   
     .center-vertical {
@@ -68,7 +68,7 @@
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
   /*background:#faebfc;*/
   background:#ebfafc;
-      z-index:-2;
+
 
 }
 
@@ -196,6 +196,7 @@
   align-items: center;
   background: #333;
   color: #fff;
+  z-index:2;
 }
 
 /*----------------------------
@@ -250,6 +251,7 @@
   border: solid 1px #8c8c8c;
   border-radius: 3px;
   transition: .4s;
+
 }
 
 .btn-flat-border:hover {

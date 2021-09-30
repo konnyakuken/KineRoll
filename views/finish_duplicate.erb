@@ -4,23 +4,34 @@
     </form>
     <p></p>
     <div class="center-hrizontal">
+    	
     	<%if !@movies.empty? %>
-			<% @movies.each.reverse_each do |task| %>
+    		<div>
+				<% @movies.each.reverse_each do |task| %>
 				    <% movie=Movie.find(History.find(task.history_id).movie_id ) %>
-					<div class="post center-vertical">
-	            		<img src="<%= movie.jacket%>">
-	            		<p><%= movie.title%></p>
-	            		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
-	            		<p><%=task.cinema%></p>
-	            		<p>日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
-	            		<p>コメント: <%=task.comment%></p>
-	            		<p class="result-rating-rate">
-	                        <span class="star5_rating" data-rate="<%=task.star%>"></span>
-	                    </p>
-	            		<a href="/finish/delete/<%=task.id%>/duplicate">削除</a>
-	            		<a href="/finish/edit/<%=task.id%>/duplicate">編集</a>
-	            	</div>
-			<% end %>
+	        	     <div class="card task mb-3" style="max-width: 640px;">
+	        		  <div class="row g-0">
+	        		    <div class="col-md-8">
+	        		      <div class="card-body">
+	        		        <h5 class="card-title"><%= movie.title%></h5>
+	        		        <p class="card-text">映画館: <%=task.cinema%></p>
+	        		        <p class="card-text" >観賞日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
+	        		        <p class="card-text">コメント: <%=task.comment%></p>
+	            		    <p class="result-rating-rate">
+		                        <span class="star5_rating" data-rate="<%=task.star%>"></span>
+		                    </p> 
+		                    <p class="card-text"><small class="text-muted">公開日 <%= Date.parse(movie.release.to_s)%></small><a class="delete-btn far fa-trash-alt" href="/finish/delete/<%=task.id%>/duplicate"></a></P>
+	        		      </div>
+	        		      
+	        		    </div>
+	        		    <div class="col-md-4 ticket">
+	            		    <a href="/finish/edit/<%=task.id%>/duplicate"><img class="center-vertical schedule-jacket" src="<%= movie.jacket%>" ></a>
+	        		        <p class="card-text"><small class="text-muted">画像をクリックで編集</small></p>
+	        		    </div>
+	        		  </div>
+	        		</div>
+				<% end %>
+			</div>
 		<% else %>
 			<h2>観た作品はありません</h2>
 		<%end%>
