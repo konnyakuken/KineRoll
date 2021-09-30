@@ -1,4 +1,4 @@
-<body>
+<body class="center-hrizontal">
     <div class="post center-vertical">
 		<img src="<%= @movie.jacket%>">
 		<p><%= @movie.title%></p>
@@ -17,7 +17,7 @@
     			<label for="note">一言メモ</label><br>
     			<input type="text" id="note" name="note" value="<%=@task.note%>">
     		</div>
-    		<input type="submit" value="更新">
+    		<input class="btn-flat-border  form-control" type="submit" value="更新">
 		</form>
 	</div>
 </body>

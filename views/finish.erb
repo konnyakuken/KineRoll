@@ -12,7 +12,7 @@
     	<%if !@movies.empty? %>
 			<% @array.each.reverse_each do |array_id| %>
 				    <% movie=Movie.find(History.find(array_id).movie_id ) %>
-					<div class="post center-vertical">
+					<div class="post pop center-vertical">
 						<form  action="/finish/detail/<%=array_id%>" method="get">
 							 	<input type="image"  src="<%= movie.jacket%>" alt="送信する">
 		    			</form>
@@ -23,5 +23,6 @@
 		<% else %>
 			<h2>観た作品はありません</h2>
 		<%end%>
+
 	</div>
 </body>

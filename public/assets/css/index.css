@@ -12,6 +12,7 @@
       height: 70px;
     width: 100%;
     background-color: #646464;
+
   }
   
     .center-vertical {
@@ -61,6 +62,50 @@
       height:400px;
 }
 
+/*スケジュールのカードフレーム*/
+
+.task{
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+  /*background:#faebfc;*/
+  background:#ebfafc;
+      z-index:-2;
+
+}
+
+.card-title{
+  border-bottom: 3px solid #000;
+  font-weight:  bold;
+}
+
+.time{
+  padding: 1rem 2rem;
+  border-top: 6px double #000;
+  border-bottom: 6px double #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+
+}
+
+.delete-btn{
+  position: absolute;
+  right: 40px;
+  bottom: 25px;  
+  
+}
+
+.ticket{
+
+  border-left: 4px dashed #858585;
+}
+
+.schedule-jacket{
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .stars span{
   display: flex;               /* 要素をフレックスボックスにする */
