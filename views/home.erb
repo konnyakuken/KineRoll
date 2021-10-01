@@ -12,10 +12,10 @@
 					<!--<a><img src="<%#=current_user.icon%>" alt="user_image" width="40" height="40"></a>-->
 				<%# end %>
 				<div class="flex-item">
-					<form action="/home/edit/<%=current_user.id%>" method="get">
-					    <input class="btn-home-border form-control" type="submit" value="ユーザー情報の編集" >
+					<form action="/search" method="get">
+					    <input class="btn-home-border form-control" type="submit" value="映画を検索">
 					</form><br>
-						
+					
 					<form action="/favorite" method="get">
 					    <input class="btn-home-border form-control" type="submit" value="お気に入りした作品">
 					</form><br>

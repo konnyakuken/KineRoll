@@ -158,6 +158,7 @@
 .star5_rating[data-rate="3"]:after{ width: 60%; }
 .star5_rating[data-rate="2"]:after{ width: 80%; }
 .star5_rating[data-rate="1"]:after{ width: 100%; }
+.star5_rating[data-rate="0"]:after{ width: 0%; }
 
 
 /*お気に入りボタン*/

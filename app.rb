@@ -119,21 +119,26 @@ post "/signup"do
 =end   
     img_url=""
     if(!(params[:name]=="" || params[:password]==""))
-        if User.find_by(name:params[:name])==nil#名前の重複がないかの確認
-            user=User.create(
-                name: params[:name],
-                password: params[:password],
-                password_confirmation: params[:password_confirmation],
-                icon: img_url   
-            )
-            
-            if user.persisted? #Active Record object がDB に保存済みかどうかを判定
-            session[:user] = user.id
+        if params[:password]==params[:password_confirmation]
+            if User.find_by(name:params[:name])==nil#名前の重複がないかの確認
+                user=User.create(
+                    name: params[:name],
+                    password: params[:password],
+                    password_confirmation: params[:password_confirmation],
+                    icon: img_url   
+                )
+                
+                if user.persisted? #Active Record object がDB に保存済みかどうかを判定
+                session[:user] = user.id
+                end
+                redirect "/home"
+            else
+                session[:name_dup]=true
+                redirect"/re_signup"
             end
-            redirect "/home"
         else
-            session[:name_dup]=true
-            redirect"/re_signup"
+           @password=true
+            
         end
     end
     redirect"/re_signup"

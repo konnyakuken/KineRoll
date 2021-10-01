@@ -18,10 +18,10 @@
                 
                 <form action="/signup" method="post" enctype="multipart/form-data"><%# enctype属性でファイル送信を可能に%>
                     <div class="form-group" style="text-align:center">
-                            <input class="col-xs-6 input-lg" name="name" placeholder="ユーザー名"><br><!--placeholderはフォーム内に文章-->
+                            <input class="col-xs-6 input-lg" name="name" placeholder="ユーザー名" required><br><!--placeholderはフォーム内に文章-->
                             <!--<input name="mail" placeholder="メールアドレス"><br>-->
-                            <input class="col-xs-6 input-lg" name="password" type="password" placeholder="パスワード"><br>
-                            <input class="col-xs-6 input-lg" name="password_confirmation" type="password" placeholder="パスワードをもう一度入力"><br>
+                            <input class="col-xs-6 input-lg" name="password" type="password" placeholder="パスワード" required><br>
+                            <input class="col-xs-6 input-lg" name="password_confirmation" type="password" placeholder="パスワードをもう一度入力" required><br>
                             <!--<input  name="file" type="file">-->
                             <input class="btn-log btn-flat-border" type="submit" value="新規登録">
                     </div>
