@@ -101,6 +101,11 @@
   border-left: 4px dashed #858585;
 }
 
+.mb-3{
+  min-width: 640px;
+  max-width: 660px;
+}
+
 .schedule-jacket{
   display: block;
     margin-left: auto;

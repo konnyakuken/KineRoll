@@ -34,18 +34,19 @@
 </section>
 <body>
 	<p></p>
-	
+	<p></p>
+	<p></p>
 	<h2 class="center-hrizontal">人気映画</h2>
-		    <div class="center-hrizontal">
-				<% @movies.each do |movie| %>
-					<div class="post pop center-vertical">
-						<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
-						<p><%= movie["release_date"]%></p>
-						<p><%= movie["title"]%></p>
-					
-						<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
-					</div>
-				<% end %>
-			</div>
+	    <div class="center-hrizontal">
+			<% @movies.each do |movie| %>
+				<div class="post pop center-vertical">
+					<img src="https://image.tmdb.org/t/p/w185<%= movie["poster_path"]%>">
+					<p><%= movie["release_date"]%></p>
+					<p><%= movie["title"]%></p>
+				
+					<!--<a href="<#%= movie["previewUrl"]%>">サンプル</a>-->
+				</div>
+			<% end %>
+		</div>
 </body>
 </html>
