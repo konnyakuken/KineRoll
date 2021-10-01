@@ -75,7 +75,8 @@
 	    <div class="center-hrizontal">
     	<%if !@finish.empty? %>
     		<div>
-				<% @finish.first(1).each.reverse_each do |task| %>
+				<%# @finish.first(1).each.reverse_each do |task| %>
+				<% task=@finish.last %>
 				    <% movie=Movie.find(History.find(task.history_id).movie_id ) %>
 	        	     <div class="card task mb-3" style="max-width: 640px;">
 	        		  <div class="row g-0">
@@ -99,7 +100,7 @@
 	        		    </div>
 	        		  </div>
 	        		</div>
-				<% end %>
+				
 			</div>
 		<% else %>
 			<h2>観た作品はありません</h2>

@@ -114,6 +114,18 @@ get "/"do
     else
         now_task
         @finish=Review.where(user_id: session[:user])
+=begin
+        p @finish
+        if !@finish.empty?
+            array = [] #日付をsortする
+            @finish.each do |movie|
+                array.push([movie.date,movie.id])
+            end
+            array=array.sort_by {|x| x[0]}
+            p array[0][1]
+            @finish=Review.find(array[0][1])
+        end
+=end
         erb :home
     end
 end
@@ -121,6 +133,17 @@ end
 get "/home"do
     pop_movie
     @finish=Review.where(user_id: session[:user])
+=begin
+    if !@finish.empty?
+            array = [] #日付をsortする
+            @finish.each do |movie|
+                array.push([movie.date,movie.id])
+            end
+            array=array.sort_by {|x| x[0]}
+            
+            @finish=Review.find(array[0][1])
+    end
+=end
     now_task
    erb :home 
 end
