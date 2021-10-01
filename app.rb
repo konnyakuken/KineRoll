@@ -47,6 +47,40 @@ helpers do#erbファイル上で利用できるメソッド
        sleep(1)
     end
     
+    def  now_task
+        @movies=Schedule.where(user_id: session[:user])
+        now_date
+            if !@movies.empty?
+                @array = [] #日付をsortする
+                @movies.each do |movie|
+                    @array.push([movie.date,movie.id])
+                end
+                @array=@array.sort_by {|x| x[0]}
+                #観る時間を過ぎた作品があるのかをチェックして観た作品に追加
+                while Time.parse(@array[0][0].strftime("%Y/%m/%d %H:%M"))<=Time.parse(Time.now.timezone('Asia/Tokyo').strftime("%Y/%m/%d %H:%M")) do
+                    schedule=Schedule.find(@array[0][1])
+                    history=History.find_by(movie_id: schedule.movie_id)
+                    Review.create(
+                        user_id: session[:user],
+                        cinema: schedule.cinema,
+                        date: schedule.date,
+                        comment: schedule.note,
+                        history_id: history.id
+                    )
+                    #@array[0].delete_at(0)
+                    date=@array[0][0]
+                    id=@array[0][1]
+                    @array.delete([date,id])
+                    schedule.destroy
+                    if @array.empty?
+                        break
+                    end
+                end
+            end    
+    
+    end
+    
+    
 end
 
 before do
@@ -75,14 +109,19 @@ get "/"do
     
     pop_movie
     if session[:user]==nil#ログイン済みの場合ホーム画面に遷移するように
+        
         erb :index
     else
+        now_task
+        @finish=Review.where(user_id: session[:user])
         erb :home
     end
 end
 
 get "/home"do
     pop_movie
+    @finish=Review.where(user_id: session[:user])
+    now_task
    erb :home 
 end
 
@@ -287,6 +326,7 @@ get "/task"do
             id=@array[0][1]
             @array.delete([date,id])
             schedule.destroy
+            
         end
     end
 
@@ -440,4 +480,12 @@ get "/update/schedule"do
     end
     @update=true
     erb :update_schedule
+end
+
+get "/update/home"do
+   @movies=Schedule.where(user_id: session[:user])
+   now_date
+   now_task
+   @update=true
+   erb :home_update
 end
