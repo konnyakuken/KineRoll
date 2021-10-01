@@ -188,30 +188,36 @@ end
 
 post "/home/edit/:id" do
      user=User.find(params[:id])
-     
-     if params[:password]==params[:password_confirmation]
-         user.name=params[:name]
-         user.password=params[:password]
-         user.password_confirmation=params[:password_confirmation]
-        #p user.authenticate_password(params[:password_confirmation])
-        #p params[:password_confirmation]
-        
-         img_url=""
-        # p params[:file]
-        if params[:file]!=""
-            img=params[:file]
-            tempfile=img[:tempfile]
-            upload=Cloudinary::Uploader.upload(tempfile.path)
-            img_url=upload["url"]
-            user.icon=img_url
-        end
-         user.save
-        redirect"/home"
-    else
-        p "aaaa"
-        @password=true
-        erb:user_edit
-    end
+      if User.find_by(name:params[:name])==nil ||User.find_by(name:params[:name]).id==user.id #名前の重複がないかの確認
+         if params[:password]==params[:password_confirmation]
+             user.name=params[:name]
+             user.password=params[:password]
+             user.password_confirmation=params[:password_confirmation]
+            #p user.authenticate_password(params[:password_confirmation])
+            #p params[:password_confirmation]
+            
+             img_url=""
+            # p params[:file]
+=begin            
+            if params[:file]!=""
+                img=params[:file]
+                tempfile=img[:tempfile]
+                upload=Cloudinary::Uploader.upload(tempfile.path)
+                img_url=upload["url"]
+                user.icon=img_url
+            end
+=end
+             user.save
+            redirect"/home"
+         else
+            p "aaaa"
+            @password=true
+            erb:user_edit
+         end
+     else
+        @userDuplicate=true
+        erb:user_edit    
+     end
 end
 
 

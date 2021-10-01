@@ -3,6 +3,10 @@
     <h2>ユーザー情報の編集</h2>
 	<h1><%#=current_user.name%></h1>
 	<p></p>
+		<% if @userDuplicate.present? %>
+            <h4>そのユーザー名は既に存在しています</h4>
+        <%end%>
+	
 		<% if @password.present? %>
             <h4>2つとも同じパスワードを入力してください</h4>
         <%end%>

@@ -158,7 +158,7 @@
 .star5_rating[data-rate="3"]:after{ width: 60%; }
 .star5_rating[data-rate="2"]:after{ width: 80%; }
 .star5_rating[data-rate="1"]:after{ width: 100%; }
-.star5_rating[data-rate="0"]:after{ width: 0%; }
+.star5_rating[data-rate=""]:after{ width: 0%; }
 
 
 /*お気に入りボタン*/
@@ -170,6 +170,8 @@
  /*margin-left: 20px;*/
  text-align: center;
  padding: 1px 0;
+ cursor: pointer;/*カーソルマーク*/
+ cursor: hand;
  }
 
 .fas.fa-star.fa-2x {
@@ -180,6 +182,8 @@
  /*margin-left: 20px;*/
  text-align: center;
   padding: 1px 0;
+  cursor: pointer;
+  cursor: hand;
  }
  
  
