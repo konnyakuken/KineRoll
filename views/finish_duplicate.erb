@@ -7,8 +7,9 @@
     	
     	<%if !@movies.empty? %>
     		<div>
-				<% @movies.each.reverse_each do |task| %>
-				    <% movie=Movie.find(History.find(task.history_id).movie_id ) %>
+				<% @array.each.reverse_each do |task_id| %>
+				    <% movie=Movie.find(History.find(Review.find(task_id[1]).history_id).movie_id ) %>
+				    <% task=Review.find(task_id[1])%>
 	        	     <div class="card task mb-3" style="max-width: 640px;">
 	        		  <div class="row g-0">
 	        		    <div class="col-md-8">

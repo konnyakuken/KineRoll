@@ -408,6 +408,15 @@ end
 
 get"/finish/duplicate"do
      @movies=Review.where(user_id: session[:user])
+      if !@movies.empty?
+            @array = [] #日付をsortする
+            @movies.each do |movie|
+                @array.push([movie.date,movie.id])
+            end
+            @array=@array.sort_by {|x| x[0]}
+            
+      end
+     
    erb:finish_duplicate
 end
 
