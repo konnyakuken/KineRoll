@@ -1,4 +1,7 @@
 $(function() {
+      $(window).on('load', function() {
+      $('#js-copyalert').fadeOut(0)
+  });
   $('#js-copybtn').on('click', function(){
     // コピーする文章の取得
     let text = $('#js-copytext').text();
