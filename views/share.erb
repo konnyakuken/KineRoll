@@ -1,0 +1,32 @@
+<body>
+    <form class="center-hrizontal" action="/share/duplicate/<%=session[:share]%>" method="get">
+    	<input class="btn-flat-border" type="submit" value="レビュー一覧表示">
+    </form>
+    <p></p>
+	<div  class="center-hrizontal">
+	    <h2><%=@name%>さんの観た映画</h2>
+		<h2><%=@array.size%></h2><h2>作品</h2>
+		
+	</div>
+
+	
+	
+    <div class="center-hrizontal">
+    	
+    	<%if !@movies.empty? %>
+			<% @array.each.reverse_each do |array_id| %>
+				    <% movie=Movie.find(History.find(array_id).movie_id ) %>
+					<div class="post pop center-vertical">
+						<form  action="/share/detail/<%=array_id%>" method="get">
+							 	<input type="image"  src="<%= movie.jacket%>" alt="送信する">
+		    			</form>
+	            		<p><%= movie.title%></p>
+	            		<p>公開日 <%= Date.parse(movie.release.to_s)%></p>
+	            	</div>
+			<% end %>
+		<% else %>
+			<h2>観た作品はありません</h2>
+		<%end%>
+
+	</div>
+</body>

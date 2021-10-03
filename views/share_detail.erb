@@ -1,0 +1,32 @@
+<body>
+    <form class="center-hrizontal" action="/share/<%=session[:share]%>" method="get">
+    	<input class=" btn-flat-border" type="submit" value="　戻る　">
+    </form>
+    <p></p>
+    <div class="center-hrizontal">
+        <div>
+		<% @reviews.each.reverse_each do |review| %>
+            <div class="card task mb-3" style="max-width: 640px;">
+    		  <div class="row g-0">
+    		    <div class="col-md-8">
+    		      <div class="card-body">
+    		        <h5 class="card-title"><%= @movie.title%></h5>
+    		        <p class="card-text">映画館: <%=review.cinema%></p>
+    		        <p class="card-text" >観賞日時:<%=review.date.strftime("%Y-%m-%d %H:%M")%></p>
+    		        <p class="card-text">コメント: <%=review.comment%></p>
+        		    <p class="result-rating-rate">
+                        <span class="star5_rating" data-rate="<%=review.star%>"></span>
+                    </p> 
+                    <p class="card-text"><small class="text-muted">公開日 <%= Date.parse(@movie.release.to_s)%></small></P>
+    		      </div>
+    		      
+    		    </div>
+    		    <div class="col-md-4 ticket">
+        		    <img class="center-vertical schedule-jacket" src="<%= @movie.jacket%>" >
+    		    </div>
+    		  </div>
+    		</div>
+		<% end %>
+	    </div>
+	</div>
+</body>

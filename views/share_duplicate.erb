@@ -1,0 +1,40 @@
+<body>
+    <form class="center-hrizontal" action="/share/<%=session[:share]%>" method="get">
+    	<input class=" btn-flat-border" type="submit" value="作品一覧表示">
+    </form>
+    <p></p>
+    <div class="center-hrizontal">
+    	
+    	<%if !@movies.empty? %>
+    		<div>
+				<% @array.each.reverse_each do |task_id| %>
+				    <% movie=Movie.find(History.find(Review.find(task_id[1]).history_id).movie_id ) %>
+				    <% task=Review.find(task_id[1])%>
+	        	     <div class="card task mb-3" style="max-width: 640px;">
+	        		  <div class="row g-0">
+	        		    <div class="col-md-8">
+	        		      <div class="card-body">
+	        		        <h5 class="card-title"><%= movie.title%></h5>
+	        		        <p class="card-text">映画館: <%=task.cinema%></p>
+	        		        <p class="card-text" >観賞日時:<%=task.date.strftime("%Y-%m-%d %H:%M")%></p>
+	        		        <p class="card-text">コメント: <%=task.comment%></p>
+	            		    <p class="result-rating-rate">
+		                        <span class="star5_rating" data-rate="<%=task.star%>"></span>
+		                    </p> 
+
+		                    <p class="card-text"><small class="text-muted">公開日 <%= Date.parse(movie.release.to_s)%></small></P>
+	        		      </div>
+	        		      
+	        		    </div>
+	        		    <div class="col-md-4 ticket">
+	            		    <img class="center-vertical schedule-jacket" src="<%= movie.jacket%>" >
+	        		    </div>
+	        		  </div>
+	        		</div>
+				<% end %>
+			</div>
+		<% else %>
+			<h2>観た作品はありません</h2>
+		<%end%>
+	</div>
+</body>

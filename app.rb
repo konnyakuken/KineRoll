@@ -521,3 +521,37 @@ get "/update/home"do
    @update=true
    erb :home_update
 end
+
+
+#share画面の実装
+get "/share/:id"do
+   session[:share]=params[:id]
+   @name=User.find(session[:share]).name
+   @movies=Review.where(user_id: session[:share])
+    set= Set.new
+    @movies.each do |movie|
+        set.add(movie.history_id)
+    end
+    @array=set.to_a
+   
+    erb :share
+end
+
+get "/share/detail/:id"do
+    @reviews=Review.where(user_id: session[:share]).where(history_id: params[:id])
+    @movie=Movie.find(History.find(params[:id]).movie_id )
+    erb:share_detail    
+end
+
+get"/share/duplicate/:id"do
+        @movies=Review.where(user_id: session[:share])
+      if !@movies.empty?#日付順にソートする
+            @array = [] #日付をsortする
+            @movies.each do |movie|
+                @array.push([movie.date,movie.id])
+            end
+            @array=@array.sort_by {|x| x[0]}
+            
+      end
+   erb :share_duplicate
+end

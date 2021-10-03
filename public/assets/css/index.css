@@ -364,3 +364,34 @@
   text-decoration: none; 
 }
 
+
+/*Twitter*/
+.fa-twitter{
+  color:#1da1f2;
+  cursor: pointer;/*カーソルマーク*/
+ cursor: hand;
+ padding: 0px 2px;
+}
+
+/*line*/
+.fa-line.icon{
+  color:#00B900;
+  cursor: pointer;/*カーソルマーク*/
+ cursor: hand;
+}
+
+.fa-creative-commons-share{
+   cursor: pointer;/*カーソルマーク*/
+   cursor: hand;
+   padding: 0px 2px;
+}
+
+.copy_alert {
+  display: none;
+
+}
+
+.share_icon{
+  z-index:0;
+  position: relative;
+}

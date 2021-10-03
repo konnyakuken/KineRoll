@@ -5,8 +5,30 @@
     <p></p>
 	<div  class="center-hrizontal">
 		<h2>視聴済み</h2><br>
-		<h2><%=@array.size%></h2><h2>作品</h2>
+		<h2><%=@array.size%></h2><h2>作品　</h2>
 	</div>
+	<div class="center-hrizontal share_icon">
+		<a href="https://twitter.com/intent/tweet?text=これまでに<%=@array.size%>作品映画を観たよ！&url=https://kineroll.com/share/<%=current_user.id%>" target="_blank" rel="noopener noreferrer">
+			<h2 class="fab fa-twitter" id="js-copyTwitter" ></h2>
+		</a>
+		<%#<h2 class="fab fa-line icon" id="js-copyLine"></h2>%>
+		<h2 class="fab fa-creative-commons-share" id="js-copybtn"></h2>
+		
+		<p hidden id="js-copytext">https://kineroll.com/share/<%=current_user.id%></p>
+		
+		<script src="js/copy.js"></script>	
+
+	</div>		
+	
+	<div class="center-hrizontal">
+		<p class="space"></p>
+		<p id="js-copyalert" class="copy_alert">コピーできました！</p>
+	</div>	
+	
+	
+
+	
+	
     <div class="center-hrizontal">
     	
     	<%if !@movies.empty? %>
