@@ -24,6 +24,7 @@ enable :sessions
 helpers do#erbファイル上で利用できるメソッド
     def current_user
        User.find_by(id: session[:user]) #ログイン中のユーザー情報取得
+       p User.find_by(id: session[:user])
     end
     
     def pop_movie
